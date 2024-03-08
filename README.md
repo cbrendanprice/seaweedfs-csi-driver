@@ -43,7 +43,7 @@ helm repo add seaweedfs-csi-driver https://seaweedfs.github.io/seaweedfs-csi-dri
 
 1. Clone this repository 
 ```sh
-git clone https://github.com/seaweedfs/seaweedfs-csi-driver.git
+git clone https://github.com/cbrendanprice/seaweedfs-csi-driver.git
 ```
 
 2. Adjust your SeaweedFS Filer address via variable SEAWEEDFS_FILER in `deploy/kubernetes/seaweedfs-csi.yaml` (2 places)
@@ -86,7 +86,7 @@ $ kubectl delete -f deploy/kubernetes/seaweedfs-csi.yaml
 
 1. Clone project
 ```bash
-git clone https://github.com/seaweedfs/seaweedfs-csi-driver.git
+git clone https://github.com/cbrendanprice/seaweedfs-csi-driver.git
 ```
 2. Edit `./seaweedfs-csi-driver/deploy/helm/values.yaml` if required and Install
 ```bash

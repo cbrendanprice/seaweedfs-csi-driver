@@ -6,7 +6,7 @@ IMAGE_NAME=seaweedfs-csi-driver
 VERSION ?= dev
 IMAGE_TAG=$(REGISTRY_NAME)/$(IMAGE_NAME):$(VERSION)
 COMMIT ?= $(shell git rev-parse --short HEAD)
-LDFLAGS ?= -s -w -X github.com/seaweedfs/seaweedfs-csi-driver/pkg/driver.gitCommit=${COMMIT}
+LDFLAGS ?= -s -w -X github.com/cbrendanprice/seaweedfs-csi-driver/pkg/driver.gitCommit=${COMMIT}
 
 deps:
 	pushd cmd/seaweedfs-csi-driver; go get -u; popd
