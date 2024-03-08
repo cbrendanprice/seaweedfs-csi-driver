@@ -79,7 +79,16 @@ func fuseMount(path string, command string, args []string) (Unmounter, error) {
 
 		// make sure we'll have no stale mounts
 		time.Sleep(time.Millisecond * 100)
-		_ = mountutil.Unmount(path)
+
+		dir, err := os.Lstat(path)
+		if err == nil {
+			if dir.Mode()&os.ModeSymlink != 0 {
+				_ = os.Remove(path)
+			} else {
+				// try to unmount before mounting again
+				_ = mountutil.Unmount(path)
+			}
+		}
 
 		close(fu.finished)
 	}()
@@ -124,7 +133,7 @@ func (fu *fuseUnmounter) waitFinished(timeout time.Duration) error {
 
 func (fu *fuseUnmounter) Unmount() error {
 	if ok, err := mountutil.IsMountPoint(fu.path); ok || mount.IsCorruptedMnt(err) {
-		if err := mountutil.Unmount(fu.path); err != nil {
+		if err := unmountNodePath(fu.path); err != nil {
 			return err
 		}
 	}
