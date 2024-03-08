@@ -78,7 +78,7 @@ func checkMount(targetPath string) (bool, error) {
 			}
 			isMnt = false
 		} else if mount.IsCorruptedMnt(err) {
-			if err := mountutil.Unmount(targetPath); err != nil {
+			if err := unmountNodePath(targetPath); err != nil {
 				return false, err
 			}
 			isMnt, err = mountutil.IsMountPoint(targetPath)
@@ -100,6 +100,25 @@ func removeDirContent(path string) error {
 		if err != nil {
 			return err
 		}
+	}
+
+	return nil
+}
+
+func unmountNodePath(path string) error {
+	dir, err := os.Lstat(path)
+	glog.V(4).Infof("is target node path '%s' a symlink? %v (error: %v)", path, dir.Mode()&os.ModeSymlink != 0, err)
+	if err != nil {
+		return err
+	}
+
+	if dir.Mode()&os.ModeSymlink != 0 {
+		if err := os.Remove(path); err != nil {
+			return err
+		}
+	} else {
+		// try to unmount before mounting again
+		_ = mountutil.Unmount(path)
 	}
 
 	return nil
