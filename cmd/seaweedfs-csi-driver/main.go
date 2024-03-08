@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/seaweedfs/seaweedfs-csi-driver/pkg/datalocality"
-	"github.com/seaweedfs/seaweedfs-csi-driver/pkg/driver"
+	"github.com/cbrendanprice/seaweedfs-csi-driver/pkg/datalocality"
+	"github.com/cbrendanprice/seaweedfs-csi-driver/pkg/driver"
 	"github.com/seaweedfs/seaweedfs/weed/glog"
 	flag "github.com/seaweedfs/seaweedfs/weed/util/fla9"
 )

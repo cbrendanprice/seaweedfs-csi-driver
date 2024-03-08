@@ -6,8 +6,8 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/cbrendanprice/seaweedfs-csi-driver/pkg/datalocality"
 	"github.com/container-storage-interface/spec/lib/go/csi"
-	"github.com/seaweedfs/seaweedfs-csi-driver/pkg/datalocality"
 	"github.com/seaweedfs/seaweedfs/weed/glog"
 	"github.com/seaweedfs/seaweedfs/weed/pb"
 	"github.com/seaweedfs/seaweedfs/weed/pb/filer_pb"

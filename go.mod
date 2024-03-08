@@ -1,4 +1,4 @@
-module github.com/seaweedfs/seaweedfs-csi-driver
+module github.com/cbrendanprice/seaweedfs-csi-driver
 
 go 1.21
 

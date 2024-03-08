@@ -6,8 +6,8 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/cbrendanprice/seaweedfs-csi-driver/pkg/k8s"
 	"github.com/container-storage-interface/spec/lib/go/csi"
-	"github.com/seaweedfs/seaweedfs-csi-driver/pkg/k8s"
 	"github.com/seaweedfs/seaweedfs/weed/glog"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

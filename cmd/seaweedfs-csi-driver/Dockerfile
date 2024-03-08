@@ -9,8 +9,8 @@ RUN git clone https://github.com/seaweedfs/seaweedfs /go/src/github.com/seaweedf
 RUN cd /go/src/github.com/seaweedfs/seaweedfs/weed && go install
 
 RUN mkdir -p /go/src/github.com/seaweedfs/
-RUN git clone https://github.com/seaweedfs/seaweedfs-csi-driver /go/src/github.com/seaweedfs/seaweedfs-csi-driver
-RUN cd /go/src/github.com/seaweedfs/seaweedfs-csi-driver && go build -ldflags="-s -w" -o /seaweedfs-csi-driver ./cmd/seaweedfs-csi-driver/main.go
+RUN git clone https://github.com/cbrendanprice/seaweedfs-csi-driver /go/src/github.com/cbrendanprice/seaweedfs-csi-driver
+RUN cd /go/src/github.com/cbrendanprice/seaweedfs-csi-driver && go build -ldflags="-s -w" -o /seaweedfs-csi-driver ./cmd/seaweedfs-csi-driver/main.go
 
 FROM alpine AS final
 RUN apk add fuse
