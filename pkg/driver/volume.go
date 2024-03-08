@@ -36,8 +36,9 @@ func (vol *Volume) Stage(stagingTargetPath string) error {
 	if isMnt, err := checkMount(stagingTargetPath); err != nil {
 		return err
 	} else if isMnt {
-		// try to unmount before mounting again
-		_ = mountutil.Unmount(stagingTargetPath)
+		if err := unmountNodePath(stagingTargetPath); err != nil {
+			return err
+		}
 	}
 
 	if u, err := vol.mounter.Mount(stagingTargetPath); err == nil {
