@@ -19,7 +19,7 @@ mount_options {
 }
 
 parameters {
-  # Available options: https://github.com/seaweedfs/seaweedfs-csi-driver/blob/master/pkg/driver/mounter_seaweedfs.go
+  # Available options: https://github.com/cbrendanprice/seaweedfs-csi-driver/blob/master/pkg/driver/mounter_seaweedfs.go
   collection = "example"
   replication = "000"
   path = "/buckets/example"

@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/seaweedfs/seaweedfs-csi-driver/pkg/datalocality"
+	"github.com/cbrendanprice/seaweedfs-csi-driver/pkg/datalocality"
 	"github.com/seaweedfs/seaweedfs/weed/glog"
 	"github.com/seaweedfs/seaweedfs/weed/util"
 )

@@ -7,8 +7,8 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/cbrendanprice/seaweedfs-csi-driver/pkg/datalocality"
 	"github.com/container-storage-interface/spec/lib/go/csi"
-	"github.com/seaweedfs/seaweedfs-csi-driver/pkg/datalocality"
 	"github.com/seaweedfs/seaweedfs/weed/glog"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
@@ -71,6 +71,7 @@ func logGRPC(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, h
 
 func checkMount(targetPath string) (bool, error) {
 	isMnt, err := mountutil.IsMountPoint(targetPath)
+	glog.V(4).Infof("is target node path '%s' a mount point? %v (error: %v)", targetPath, isMnt, err)
 	if err != nil {
 		if os.IsNotExist(err) {
 			if err = os.MkdirAll(targetPath, 0750); err != nil {
