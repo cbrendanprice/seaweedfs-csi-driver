@@ -10,8 +10,15 @@ spec:
   replicas: {{ .Values.controller.replicas }}
   template:
     metadata:
+      {{- if .Values.global.podAnnotations }}
+      annotations:
+      {{- include "common.tplvalues.render" (dict "value" .Values.global.podAnnotations "context" $) | nindent 8 }}
+      {{- end }}
       labels:
         app: {{ template "seaweedfs-csi-driver.name" . }}-controller
+      {{ if .Values.global.podLabels }}
+      {{- include "common.tplvalues.render" (dict "value" .Values.global.podLabels "context" $) | nindent 8 }}
+      {{- end }}
     spec:
       priorityClassName: system-cluster-critical
       serviceAccountName: {{ template "seaweedfs-csi-driver.name" . }}-controller-sa
