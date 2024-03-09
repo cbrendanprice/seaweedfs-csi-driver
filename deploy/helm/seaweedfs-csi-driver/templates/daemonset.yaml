@@ -12,12 +12,18 @@ spec:
     {{ toYaml .Values.node.updateStrategy | nindent 4 }}
   template:
     metadata:
-      labels:
-        app: {{ template "seaweedfs-csi-driver.name" . }}-node
-      {{- if .Values.node.injectTopologyInfoFromNodeLabel.enabled }}
+      {{- if or .Values.global.podAnnotations .Values.node.injectTopologyInfoFromNodeLabel.enabled }}
       annotations:
+      {{- include "common.tplvalues.render" (dict "value" .Values.global.podAnnotations "context" $) | nindent 8 }}
+      {{- if .Values.node.injectTopologyInfoFromNodeLabel.enabled }}
         # Tell KubeMod to make node metadata available to pod ModRules.
         ref.kubemod.io/inject-node-ref: "true"
+      {{- end }}
+      {{- end }}
+      labels:
+        app: {{ template "seaweedfs-csi-driver.name" . }}-node
+      {{ if .Values.global.podLabels }}
+      {{- include "common.tplvalues.render" (dict "value" .Values.global.podLabels "context" $) | nindent 8 }}
       {{- end }}
     spec:
       priorityClassName: system-node-critical
